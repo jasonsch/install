@@ -1,0 +1,51 @@
+# Find a file
+function ff() { find . -type f -iname '*'$*'*' -ls ; }
+ 
+# Find a file with pattern $1 in name and execute $2 on it
+function fe() { find . -type f -iname '*'${1:-}'*' -exec ${2:-file} {} \;  ; }
+ 
+# Find a pattern in a set of files and highlight them
+# (needs a recent version of egrep)
+function fs()
+{
+    OPTIND=1
+    local case=""
+    local usage="fs: find string in files.
+Usage: fs [-i] \"pattern\" [\"filename pattern\"] "
+    while getopts :it opt
+    do
+        case "$opt" in
+        i) case="-i " ;;
+        *) echo "$usage"; return;;
+        esac
+    done
+    shift $(( $OPTIND - 1 ))
+    if [ "$#" -lt 1 ]; then
+        echo "$usage"
+        return;
+    fi
+    find . -type f -name "${2:-*}" -print0 | \
+    xargs -0 zegrep --color=always -sn ${case} "$1" 2>&- | more
+}
+
+# Download from https://raw.github.com/git/git/master/contrib/completion/git-completion.bash
+source ~/.bash_scripts/git-completion.bash
+# Download from https://raw.github.com/git/git/master/contrib/completion/git-prompt.sh
+source ~/.bash_scripts/git-prompt.sh
+
+GIT_PS1_SHOWDIRTYSTATE=true
+GIT_PS1_SHOWUNTRACKEDFILES=true
+GIT_PS1_SHOWCOLORHINTS=true
+GIT_PS1_SHOWUPSTREAM="auto"
+LIGHTNING_BOLT=$'\xE2\x9A\xA1'
+PROMPT_COMMAND='__git_ps1 "\W" "$LIGHTNING_BOLT "'
+
+function tabname { printf "\e]1;$1\a"; }
+function winname { printf "\e]2;$1\a"; }
+# export PS1="\w 🍔  "
+# export PS1="\W\n🆗 >"
+
+###
+### Turn on vi command-line editing.
+###
+set -o vi
