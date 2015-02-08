@@ -1,0 +1,7 @@
+[user]
+	name = Jason Schroeder
+	email = jasonsch@gmail.com
+[push]
+	default = simple
+[core]
+	excludesfile = /Users/jasonsch/.gitignore_global
