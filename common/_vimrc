@@ -21,3 +21,4 @@ set tabstop=4
 set tags=$HOME\code\tags
 set visualbell
 set updatecount=0
+:noremap <F5> :set hlsearch! hlsearch?<CR>
