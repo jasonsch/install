@@ -1,0 +1,18 @@
+###
+### Common aliases across windows/macos. We do the appropriate registration ("doskey" v "alias") on the respective system, so
+### the text here should just be the alias name and the body.
+###
+
+###
+### FS movement aliases.
+###
+src=cd $HOME\src
+
+###
+### gcal-related aliases.
+###
+gf=dotnet $DOTNETCORE\gcal.dll -f $1 $*
+gfp=dotnet $DOTNETCORE\gcal.dll -c Potential -f $1 $*
+gfe=dotnet $DOTNETCORE\gcal.dll -c Em-tertainment -f $1 $*
+
+timer=dotnet $DOTNETCORE\gcal.dll -c "iPhone Timers" $*
