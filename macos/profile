@@ -49,3 +49,9 @@ function winname { printf "\e]2;$1\a"; }
 ### Turn on vi command-line editing.
 ###
 set -o vi
+
+
+###
+### Add timestamps to the shell's history.
+###
+export HISTTIMEFORMAT="%m/%d/%y @ %T   "
