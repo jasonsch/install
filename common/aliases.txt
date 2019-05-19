@@ -14,5 +14,10 @@ src=cd $HOME\src
 gf=dotnet $DOTNETCORE\gcal.dll -f $1 $*
 gfp=dotnet $DOTNETCORE\gcal.dll -c Potential -f $1 $*
 gfe=dotnet $DOTNETCORE\gcal.dll -c Em-tertainment -f $1 $*
-
 timer=dotnet $DOTNETCORE\gcal.dll -c "iPhone Timers" $*
+
+###
+### https://stackoverflow.com/questions/61212/how-to-remove-local-untracked-files-from-the-current-git-working-tree
+###
+gc=git clean -nxd
+gcf=git clean -fxd
